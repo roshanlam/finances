@@ -80,6 +80,17 @@ class FixturesTest(unittest.TestCase):
                 for t in r["txns"]:
                     self.assertTrue(t.description.strip(), "a row with no description")
 
+    def test_capital_one_payment_description_has_no_trailing_sign(self):
+        """Capital One prints credits as '- $640.00'; the lone sign must not stay in the description."""
+        path = os.path.join(FIXTURES, "capital-one.txt")
+        with open(path, encoding="utf-8") as fh:
+            text = fh.read()
+        r = layout.check(text, path)
+        self.assertEqual(r["problems"], [])
+        payment = next(t for t in r["txns"] if "CAPITAL ONE ONLINE PYMT" in t.description)
+        self.assertEqual(payment.description, "CAPITAL ONE ONLINE PYMT")
+        self.assertLess(payment.amount, 0)  # credit / money in
+
     def test_fixtures_are_named_after_their_bank(self):
         slugs = {b["name"]: b["slug"] for b in banks.load()}
         for path in LAYOUTS:
