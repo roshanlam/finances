@@ -1,0 +1,31 @@
+# finances layout v1
+# bank: Bank of America
+# transactions: 6
+# Made up by hand: every name, number and amount here is invented.
+# Bank of America checking: deposits and withdrawals print in separate tables.
+# Running balances are sequential in the order printed so the ledger polarity
+# can be measured.
+#
+        Bank of America, N.A.
+                                                                                 December 1, 2025 through December 31, 2025
+                                                                                 Account Number:   1234 5678 9012
+        Alex Sample
+
+        ACCOUNT SUMMARY
+        Beginning Balance                                                                            $2,150.00
+        Deposits and Additions                                                                        3,200.00
+        Other Withdrawals                                                                            -1,450.75
+        Ending Balance                                                                               $3,899.25
+--- page ---
+        DEPOSITS AND OTHER ADDITIONS
+        Date        Description                                                                      Amount             Balance
+        12/05       Payroll Example Corp Direct Deposit                                             1,600.00            3,750.00
+        12/20       Payroll Example Corp Direct Deposit                                             1,600.00            5,350.00
+
+        WITHDRAWALS AND OTHER SUBTRACTIONS
+        Date        Description                                                                      Amount             Balance
+        12/07       Card Purchase Grocery Store Brooklyn NY                                           -45.20            5,304.80
+        12/12       Online Transfer to Savings ...4410                                               -500.00            4,804.80
+        12/18       Electric Bill ConEd                                                               -95.55            4,709.25
+        12/28       Rent Payment Landlord                                                             -810.00            3,899.25
+                Ending Balance                                                                                           $3,899.25
