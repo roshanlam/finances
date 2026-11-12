@@ -88,6 +88,16 @@ class FixturesTest(unittest.TestCase):
             self.assertTrue(os.path.basename(path).startswith(slugs[bank]),
                             f"{os.path.basename(path)} should start with {slugs[bank]}")
 
+    def test_capital_one_payment_description_has_no_stray_sign(self):
+        path = os.path.join(FIXTURES, "capital-one.txt")
+        with open(path, encoding="utf-8") as fh:
+            r = layout.check(fh.read(), path)
+        payments = [t for t in r["txns"] if "CAPITAL ONE ONLINE PYMT" in t.description]
+        self.assertTrue(payments, "expected a Capital One online payment row")
+        self.assertEqual(payments[0].description, "CAPITAL ONE ONLINE PYMT")
+        self.assertEqual(payments[0].amount, -640.00)
+
+
 
 def lines(text: str) -> list[str]:
     """A layout's text lines; blank lines are spacing and do not survive a PDF."""
