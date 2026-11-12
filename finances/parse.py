@@ -878,7 +878,10 @@ def parse_statement(path, password=None, amount_col="auto",
         if not monies:
             unmatched.append((os.path.basename(path), text))
             continue
-        desc = " ".join(w["text"] for w in ws[idx:monies[0][0]]).strip()
+        desc_words = [w["text"] for w in ws[idx:monies[0][0]]]
+        while desc_words and desc_words[-1] in ("-", "+"):
+            desc_words.pop()
+        desc = " ".join(desc_words).strip()
         if _is_blank_desc(desc):
             # Amex wraps a long merchant name onto the line above the date,
             # leaving "03/15/26 $10.00" with nothing in between. The name is
